@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gringotts Wizarding Bank - Secure Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp:wght@400&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- CONSENT MODAL - FULL SCREEN FIRST -->
+    <div class="modal-overlay consent-fullscreen active" id="consentModal">
+        <div class="consent-container">
+            <div class="goblin-logo-large">🧙‍♂️</div>
+            <h1 class="consent-title">Gringotts Eye Guardian</h1>
+            <p class="consent-text">Goblins detect confusion during vault transactions using mouse/gaze tracking. <strong>100% local processing - no data leaves your device.</strong></p>
+            
+            <div class="privacy-grid">
+                <div class="privacy-item"><span>✓</span> No images stored</div>
+                <div class="privacy-item"><span>✓</span> Local browser only</div>
+                <div class="privacy-item"><span>✓</span> One-click disable</div>
+            </div>
+            
+            <div class="consent-buttons">
+                <label class="consent-checkbox">
+                    <input type="checkbox" id="consentCheckbox" required>
+                    <span class="checkmark"></span>
+                    I consent to Eye Guardian
+                </label>
+                <button class="btn-primary-large" id="enableTracking" disabled>Enter Vault →</button>
+                <button class="btn-secondary-large" id="skipTracking">Continue Without Tracking</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
