@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gringotts Wizarding Bank - Vault Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp:wght@400&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- YOUR ORIGINAL NAVBAR -->
+    <nav class="navbar gringotts-navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="goblin-logo">🧙‍♂️</div>
+                <span class="bank-name">Gringotts Wizarding Bank</span>
+                <span class="bank-tagline">Since 1474</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="security.html" class="nav-link">Security</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- EYE TRACKING STATUS -->
+    <div class="tracking-status" id="trackingStatus">
+        <div class="tracking-icon">
+            <div class="eye-indicator off" id="eyeIndicator"></div>
+        </div>
+        <span id="trackingText">Eye Assist OFF</span>
+        <button class="toggle-btn" id="toggleTracking" title="Toggle Eye Guardian">⚙️</button>
+    </div>
+
+    <!-- MAGNIFYING GLASS -->
+    <div class="magnifier" id="magnifier" style="display: none;">
+        <div class="magnifier-glass"></div>
+        <div class="magnifier-handle"></div>
+    </div>
+
+    <!-- HERO SECTION (YOUR ORIGINAL) -->
+    <main class="main-content">
+        <section id="home" class="hero-section reveal">
+            <div class="hero-content">
+                <h1>Secure Your Vault Transaction</h1>
+                <p>Protected by Gringotts' ancient goblin magic & eye detection</p>
+                <div class="hero-stats">
+                    <div class="stat"><span class="stat-number">1474</span><span>Years Secure</span></div>
+                    <div class="stat"><span class="stat-number">0</span><span>Breaches</span></div>
+                    <div class="stat"><span class="stat-number">100%</span><span>Local Processing</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKOUT (YOUR ORIGINAL STRUCTURE + NEW FEATURES) -->
+        <section class="checkout-section reveal">
+            <div class="checkout-container">
+                <div class="checkout-grid">
+                    <!-- PAYMENT FORM -->
+                    <div class="payment-form">
+                        <div class="form-header">
+                            <h2>Payment Method</h2>
+                            <div class="security-badges">
+                                <span class="badge">Goblin Certified</span>
+                                <span class="badge">Dragon Proof</span>
+                            </div>
+                        </div>
+
+                        <!-- PAYMENT TABS (EXCLUSIVE CONTENT) -->
+                        <div class="payment-methods-tabs">
+                            <button class="tab-btn active" data-tab="card">💳 Card</button>
+                            <button class="tab-btn" data-tab="upi">📱 UPI</button>
+                            <button class="tab-btn" data-tab="netbanking">🏦 Net Banking</button>
+                        </div>
+
+                        <!-- CARD TAB -->
+                        <div class="tab-content active" id="card">
+                            <div class="form-group"><label>Cardholder Name</label><input type="text" id="cardName" placeholder="Harry Potter" required></div>
+                            <div class="form-group"><label>Card Number</label><input type="text" id="cardNumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Expiry</label><input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required></div>
+                                <div class="form-group"><label>CVC</label><input type="password" id="cvc" maxlength="4" placeholder="123" required></div>
+                            </div>
+                        </div>
+
+                        <!-- UPI TAB (SIMPLIFIED - QR + UPI ID ONLY) -->
+                        <div class="tab-content" id="upi">
+                            <div class="upi-container">
+                                <div class="upi-qr">
+                                    <div class="qr-placeholder">UPI QR Code</div>
+                                    <p>Scan to pay ₹<span id="upiAmount">299.00</span></p>
+                                </div>
+                                <div class="upi-divider">OR</div>
+                                <div class="form-group">
+                                    <label>UPI ID</label>
+                                    <input type="text" id="upiId" placeholder="harrypotter@pay">
+                                </div>
+                                <button class="upi-pay-btn" id="upiPay">Pay with UPI</button>
+                            </div>
+                        </div>
+
+                        <!-- NET BANKING TAB -->
+                        <div class="tab-content" id="netbanking">
+                            <div class="form-group">
+                                <label>Bank</label>
+                                <select id="bankSelect">
+                                    <option>Gringotts Goblin Bank</option>
+                                    <option>HDFC Bank</option>
+                                    <option>ICICI Bank</option>
+                                    <option>State Bank of India</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" id="accountNo" placeholder="123456789012" required>
+                            </div>
+                            <button class="netbanking-pay-btn" id="netbankingPay">Proceed to Net Banking</button>
+                        </div>
+
+                        <!-- COUPON -->
+                        <div class="coupon-section">
+                            <div class="form-group">
+                                <label>Gringotts Promo Code</label>
+                                <div class="coupon-input-group">
+                                    <input type="text" id="couponCode" placeholder="HARRY100, GOBLIN10...">
+                                    <button id="applyCoupon" class="coupon-btn">Apply</button>
+                                </div>
+                                <span id="couponMessage" class="coupon-message"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="pay-button" id="payButton">Secure Vault Transaction <span id="payAmount">₹299.00</span></button>
+                    </div>
+
+                    <!-- ORDER SUMMARY (CONFUSION ZONES) -->
+                    <div class="order-summary" id="orderSummary">
+                        <h3>Your Vault Deposit</h3>
+                        <div class="summary-item">
+                            <span>Clarity Guardian Pro - Annual</span>
+                            <span>₹250.00</span>
+                        </div>
+                        
+                        <!-- 🔥 PREMIUM BOX MOVED UP -->
+                        <div class="premium-section">
+                            <div class="premium-checkbox confusion-zone" id="premiumCheckbox">
+                                <label class="premium-label">
+                                    <input type="checkbox" id="premiumUpgrade">
+                                    <span class="checkmark"></span>
+                                    <span class="premium-text">Premium Dragon Protection (+₹5 galleons)
+                                        <small>Enhanced vault security with Hungarian Horntail insurance</small>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- 🔥 TERMS & CONDITIONS - HARD TO READ -->
+                        <!-- 🔥 SIMPLE TERMS TEXT -->
+                        <div class="terms-conditions confusion-zone" id="termsZone">
+                            By proceeding you agree to Gringotts Terms of Service, Privacy Policy, Goblin Processing Agreement (v13.7b), Magical Compliance Clause 47-A, Dragon Insurance Waiver Section IX, Vault Access Protocol 2024, Fee Schedule Amendment 12C, Goblin Banking Charter 1474, Horntail Protection Clause 9.2, Wand Verification Policy, Potion Liability Disclaimer, Spell Damage Coverage Limits...
+                        </div>
+
+                        
+                        <!-- 🔥 TAX SECTION -->
+                        <div class="summary-item confusion-zone tax-zone" id="feeSummary">
+                            <div class="fee-row">
+                                <span>Taxes & Gringotts Fees</span>
+                                <button class="info-btn" id="taxInfoBtn" title="Goblin fee breakdown">ℹ️</button>
+                            </div>
+                            <small>Includes vault security, goblin processing, dragon insurance</small>
+                            <span class="highlight-amount" id="feeAmount">₹49.00</span>
+                        </div>
+
+                        
+                        <div class="summary-divider"></div>
+                        <div class="summary-total">
+                            <span>Total Payable</span>
+                            <strong id="totalAmount">₹299.00</strong>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- HELP CHAT -->
+    <div class="chat-bubble" id="chatBubble" style="display: none;">
+        <div class="chat-icon"></div>
+        <div class="chat-content">
+            <p>Goblin Advisor Ready</p>
+            <button class="chat-connect">Summon Goblin</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
