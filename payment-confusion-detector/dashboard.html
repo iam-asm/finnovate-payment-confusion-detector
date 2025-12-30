@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gringotts Analytics Dashboard - Eye Tracking Validation</title>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp:wght@400&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar gringotts-navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="goblin-logo">🧙‍♂️</div>
+                <span class="bank-name">Gringotts Analytics</span>
+                <span class="bank-tagline">Eye Tracking Dashboard</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="payment-gateway.html" class="nav-link">Checkout</a></li>
+                <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="dashboard-main">
+        <!-- HERO SECTION -->
+        <section class="dashboard-hero">
+            <div class="hero-content">
+                <h1>📊 Validation Dashboard</h1>
+                <p>Real-time eye tracking analytics & confusion detection metrics</p>
+                <div class="dashboard-actions">
+                    <button class="btn-primary" id="clearDataBtn">🗑️ Clear All Data</button>
+                    <button class="btn-secondary" id="exportDataBtn">📥 Export JSON</button>
+                    <button class="btn-secondary" id="startTestBtn">🧪 Start Test Session</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY METRICS CARDS -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon">⏱️</div>
+                <div class="metric-content">
+                    <div class="metric-label">Avg. Checkout Time</div>
+                    <div class="metric-value" id="avgCheckoutTime">--</div>
+                    <div class="metric-subtitle">seconds</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">🚨</div>
+                <div class="metric-content">
+                    <div class="metric-label">Confusion Events</div>
+                    <div class="metric-value" id="confusionCount">0</div>
+                    <div class="metric-subtitle">triggered</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">💰</div>
+                <div class="metric-content">
+                    <div class="metric-label">Conversion Rate</div>
+                    <div class="metric-value" id="conversionRate">0%</div>
+                    <div class="metric-subtitle">completed payments</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">📈</div>
+                <div class="metric-content">
+                    <div class="metric-label">Help Success Rate</div>
+                    <div class="metric-value" id="helpSuccessRate">0%</div>
+                    <div class="metric-subtitle">after assistance</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HEATMAP SECTION -->
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2>🔥 Gaze Heatmap</h2>
+                <p>Where users looked most during checkout</p>
+            </div>
+            <div class="heatmap-container">
+                <canvas id="heatmapCanvas"></canvas>
+                <div class="red-dot" id="red-dot"></div>
+                <div class="heatmap-legend">
+                    <span>Low Activity</span>
+                    <div class="legend-gradient"></div>
+                    <span>High Activity</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHARTS GRID -->
+        <section class="charts-grid">
+            <!-- ZONE DWELL TIME CHART -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>📍 Zone Dwell Time</h3>
+                    <p>Total time spent in each zone</p>
+                </div>
+                <canvas id="dwellTimeChart"></canvas>
+            </div>
+
+            <!-- CONFUSION TIMELINE CHART -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>⏰ Confusion Timeline</h3>
+                    <p>When confusion events occurred</p>
+                </div>
+                <canvas id="confusionTimelineChart"></canvas>
+            </div>
+
+            <!-- REVISIT COUNT CHART -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>🔄 Zone Revisit Count</h3>
+                    <p>How many times users returned to each zone</p>
+                </div>
+                <canvas id="revisitChart"></canvas>
+            </div>
+
+            <!-- CONVERSION FUNNEL CHART -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>📊 Conversion Funnel</h3>
+                    <p>User journey through checkout</p>
+                </div>
+                <canvas id="conversionFunnelChart"></canvas>
+            </div>
+        </section>
+
+        <!-- DETAILED EVENTS LOG -->
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2>📜 Event Log</h2>
+                <p>Real-time tracking of all system events</p>
+            </div>
+            <div class="event-log-container">
+                <table class="event-log-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Event Type</th>
+                            <th>Zone ID</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventLogBody">
+                        <tr>
+                            <td colspan="4" class="no-data">No events recorded yet. Start a test session.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SESSION STATISTICS -->
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2>📊 Session Statistics</h2>
+                <p>Detailed breakdown of current session</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Gaze Points</span>
+                    <span class="stat-value" id="totalGazePoints">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Session Duration</span>
+                    <span class="stat-value" id="sessionDuration">0:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Tax Zone Dwells</span>
+                    <span class="stat-value" id="taxZoneDwell">0s</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Terms Zone Dwells</span>
+                    <span class="stat-value" id="termsZoneDwell">0s</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Premium Zone Dwells</span>
+                    <span class="stat-value" id="premiumZoneDwell">0s</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Help Interventions</span>
+                    <span class="stat-value" id="helpInterventions">0</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

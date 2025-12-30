@@ -1106,3 +1106,52 @@ body.magnifier-active {
 .premium-section {
   margin-bottom: 2rem;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ZONE VISUAL FEEDBACK - Backend Integration
+   ========================================================= */
+
+/* Active gaze zone - yellow outline */
+.zone-active {
+    outline: 2px solid rgba(255, 215, 0, 0.9) !important;
+    outline-offset: 2px;
+    transition: outline 0.2s ease;
+  }
+  
+  /* Confusion hotspot - pulsating yellow */
+  .zone-confused {
+    outline: 3px solid #ffd700 !important;
+    outline-offset: 2px;
+    animation: zonePulse 1.8s infinite;
+  }
+  
+  @keyframes zonePulse {
+    0% { 
+      box-shadow: 0 0 0 rgba(255, 215, 0, 0.4); 
+    }
+    50% { 
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); 
+    }
+    100% { 
+      box-shadow: 0 0 0 rgba(255, 215, 0, 0.4); 
+    }
+  }
+  
+  /* Ensure zones are positioned for outline visibility */
+  [data-zone] {
+    position: relative;
+  }
+
+  #gazePointer {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: red;
+    border: 2px solid white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    display: none;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    transition: transform 0.05s ease;
+  }

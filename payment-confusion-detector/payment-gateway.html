@@ -69,57 +69,59 @@
                                 <span class="badge">Dragon Proof</span>
                             </div>
                         </div>
-
-                        <!-- PAYMENT TABS (EXCLUSIVE CONTENT) -->
-                        <div class="payment-methods-tabs">
-                            <button class="tab-btn active" data-tab="card">💳 Card</button>
-                            <button class="tab-btn" data-tab="upi">📱 UPI</button>
-                            <button class="tab-btn" data-tab="netbanking">🏦 Net Banking</button>
-                        </div>
-
-                        <!-- CARD TAB -->
-                        <div class="tab-content active" id="card">
-                            <div class="form-group"><label>Cardholder Name</label><input type="text" id="cardName" placeholder="Harry Potter" required></div>
-                            <div class="form-group"><label>Card Number</label><input type="text" id="cardNumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required></div>
-                            <div class="form-row">
-                                <div class="form-group"><label>Expiry</label><input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required></div>
-                                <div class="form-group"><label>CVC</label><input type="password" id="cvc" maxlength="4" placeholder="123" required></div>
+                        <section data-zone = "PAYMENT_DETAILS">
+                            <!-- PAYMENT TABS (EXCLUSIVE CONTENT) -->
+                            <div class="payment-methods-tabs">
+                                <button class="tab-btn active" data-tab="card">💳 Card</button>
+                                <button class="tab-btn" data-tab="upi">📱 UPI</button>
+                                <button class="tab-btn" data-tab="netbanking">🏦 Net Banking</button>
                             </div>
-                        </div>
 
-                        <!-- UPI TAB (SIMPLIFIED - QR + UPI ID ONLY) -->
-                        <div class="tab-content" id="upi">
-                            <div class="upi-container">
-                                <div class="upi-qr">
-                                    <div class="qr-placeholder">UPI QR Code</div>
-                                    <p>Scan to pay ₹<span id="upiAmount">299.00</span></p>
+                            <!-- CARD TAB -->
+                            <div class="tab-content active" id="card">
+                                <div class="form-group"><label>Cardholder Name</label><input type="text" id="cardName" placeholder="Harry Potter" required></div>
+                                <div class="form-group"><label>Card Number</label><input type="text" id="cardNumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required></div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Expiry</label><input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required></div>
+                                    <div class="form-group"><label>CVC</label><input type="password" id="cvc" maxlength="4" placeholder="123" required></div>
                                 </div>
-                                <div class="upi-divider">OR</div>
+                            </div>
+
+                            <!-- UPI TAB (SIMPLIFIED - QR + UPI ID ONLY) -->
+                            <div class="tab-content" id="upi">
+                                <div class="upi-container">
+                                    <div class="upi-qr">
+                                        <div class="qr-placeholder">UPI QR Code</div>
+                                        <p>Scan to pay ₹<span id="upiAmount">299.00</span></p>
+                                    </div>
+                                    <div class="upi-divider">OR</div>
+                                    <div class="form-group">
+                                        <label>UPI ID</label>
+                                        <input type="text" id="upiId" placeholder="harrypotter@pay">
+                                    </div>
+                                    <button class="upi-pay-btn" id="upiPay">Pay with UPI</button>
+                                </div>
+                            </div>
+
+                            <!-- NET BANKING TAB -->
+                            <div class="tab-content" id="netbanking">
                                 <div class="form-group">
-                                    <label>UPI ID</label>
-                                    <input type="text" id="upiId" placeholder="harrypotter@pay">
+                                    <label>Bank</label>
+                                    <select id="bankSelect">
+                                        <option>Gringotts Goblin Bank</option>
+                                        <option>HDFC Bank</option>
+                                        <option>ICICI Bank</option>
+                                        <option>State Bank of India</option>
+                                    </select>
                                 </div>
-                                <button class="upi-pay-btn" id="upiPay">Pay with UPI</button>
+                                <div class="form-group">
+                                    <label>Account Number</label>
+                                    <input type="text" id="accountNo" placeholder="123456789012" required>
+                                </div>
+                                <button class="netbanking-pay-btn" id="netbankingPay">Proceed to Net Banking</button>
                             </div>
-                        </div>
-
-                        <!-- NET BANKING TAB -->
-                        <div class="tab-content" id="netbanking">
-                            <div class="form-group">
-                                <label>Bank</label>
-                                <select id="bankSelect">
-                                    <option>Gringotts Goblin Bank</option>
-                                    <option>HDFC Bank</option>
-                                    <option>ICICI Bank</option>
-                                    <option>State Bank of India</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Account Number</label>
-                                <input type="text" id="accountNo" placeholder="123456789012" required>
-                            </div>
-                            <button class="netbanking-pay-btn" id="netbankingPay">Proceed to Net Banking</button>
-                        </div>
+                        </section>
+                        
 
                         <!-- COUPON -->
                         <div class="coupon-section">
@@ -133,19 +135,19 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="pay-button" id="payButton">Secure Vault Transaction <span id="payAmount">₹299.00</span></button>
+                        <button type="submit" class="pay-button" id="payButton" data-zone = "FINAL_SUBMIT_BUTTON">Secure Vault Transaction <span id="payAmount">₹299.00</span></button>
                     </div>
 
                     <!-- ORDER SUMMARY (CONFUSION ZONES) -->
                     <div class="order-summary" id="orderSummary">
                         <h3>Your Vault Deposit</h3>
-                        <div class="summary-item">
+                        <div class="summary-item" data-zone="ITEMS_SUMMARYRY">
                             <span>Clarity Guardian Pro - Annual</span>
                             <span>₹250.00</span>
                         </div>
                         
                         <!-- 🔥 PREMIUM BOX MOVED UP -->
-                        <div class="premium-section">
+                        <div class="premium-section" data-zone="PREMIUM_BOX">
                             <div class="premium-checkbox confusion-zone" id="premiumCheckbox">
                                 <label class="premium-label">
                                     <input type="checkbox" id="premiumUpgrade">
@@ -159,13 +161,13 @@
                         
                         <!-- 🔥 TERMS & CONDITIONS - HARD TO READ -->
                         <!-- 🔥 SIMPLE TERMS TEXT -->
-                        <div class="terms-conditions confusion-zone" id="termsZone">
+                        <div class="terms-conditions confusion-zone" id="termsZone" data-zone = "TERMS_AND_CONDITIONS"> 
                             By proceeding you agree to Gringotts Terms of Service, Privacy Policy, Goblin Processing Agreement (v13.7b), Magical Compliance Clause 47-A, Dragon Insurance Waiver Section IX, Vault Access Protocol 2024, Fee Schedule Amendment 12C, Goblin Banking Charter 1474, Horntail Protection Clause 9.2, Wand Verification Policy, Potion Liability Disclaimer, Spell Damage Coverage Limits...
                         </div>
 
                         
                         <!-- 🔥 TAX SECTION -->
-                        <div class="summary-item confusion-zone tax-zone" id="feeSummary">
+                        <div class="summary-item confusion-zone tax-zone" id="feeSummary" data-zone="PRICE_SUMMARY">
                             <div class="fee-row">
                                 <span>Taxes & Gringotts Fees</span>
                                 <button class="info-btn" id="taxInfoBtn" title="Goblin fee breakdown">ℹ️</button>
@@ -196,6 +198,11 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- EXISTING SCRIPTS -->
+<script src="js/main.js"></script>
+
+<!-- ADD BACKEND INTEGRATION -->
+<script src="https://webgazer.cs.brown.edu/webgazer.js"></script>
+<script type="module" src="../backend/backendMain.js"></script>
 </body>
 </html>
